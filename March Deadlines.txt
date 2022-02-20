@@ -1,0 +1,5 @@
+Hassan - Communication between Pi and Arduino - By March 12-15
+Hodgson - Kinect - By March 12-15
+Alex - Budilings and Change of Elevation with 80%-90% Accuracy - By March 21
+Dipankar - Detecting Cars, Poles and People with 80%-90% Accuracy - By March 21
+Farouq - Distance with 80%-90% Accuracy - By March 21

@@ -1,30 +1,18 @@
 import cv2
 import os
 
-def vibrate(done):
-    if done == 0:
+name = ["vibrate1.h", "vibrate2.h", "vibrate3.h", "stopVibrate.h"]
+
+def vibrate(i):
         pid = os.fork() #fork a child
         if pid < 0: #error
             print("Error forking a child process\n")
             sys.exit(); #exit program
         elif pid == 0: #child process
             print("In child process\n")
-            scriptName = "arduinoScriptVibrate.h"
+            scriptName = name[i]
             os.execlp("bash", "bash", scriptName) #run bash to execute script
         os.waitpid(pid, 0) #wait for child to finish
-        done = 1
-
-def stopVibrate():
-    pid = os.fork() #fork a child
-    if pid < 0: #error
-        print("Error forking a child process\n")
-        sys.exit(); #exitprogram
-    elif pid == 0: #child process
-        print("In child process\n")
-        scriptName = "arduinoScriptStopVib.h"
-        os.execlp("bash", "bash", scriptName)  #run bash to execute script
-    os.waitpid(pid, 0) #wait for child to finish
-
 
 #reading a video stream from a webcam
 vidCap = cv2.VideoCapture(0)
@@ -82,10 +70,14 @@ while(vidCap.isOpened()):
         output.write(frame)
         cv2.imshow('Frame', frame) #show the frame in a window
         k = cv2.waitKey(20)
-        if k == 115: #115 is ascii code for s
-            done = vibrate(done) #vibrate after window pops up
-        if k == 113: #113 is ascii code for q
-            stopVibrate()
+        if k == 49: #49 is ascii code for 1
+            vibrate(0) #vibrates once every second at intensity of 150
+        elif k == 50: #50 is ascii code for 2
+            vibrate(1) #vibrate twice every second at intensity of 255
+        elif k == 51: #51 is ascii code for 3
+            vibrate(2) #vibrate 10 times every 100ms at intensity of 100
+        elif k == 113: #113 is ascii code for q
+            vibrate(3)
             break
     else:
         stopVibrate()

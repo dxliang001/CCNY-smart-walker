@@ -9,7 +9,7 @@ while(left.isOpened()):
    ret,img = left.read()
    if ret == true:
       cv2.imshow('video output',img)
-      k=cv2.waitKey(10)& 0xFF
+      k=cv2.waitKey(10)
       if k==113:
           break
       else:

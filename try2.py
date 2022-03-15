@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 left = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 #right = cv2.VideoCapture(3,cv2.CAP_DSHOW)
-while(True):
+while(left.isOpened()):
    ret,img = left.read()
    if ret == true:
       cv2.imshow('video output',img)
